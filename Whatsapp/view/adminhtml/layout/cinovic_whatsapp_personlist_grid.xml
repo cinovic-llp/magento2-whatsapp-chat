@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic Technologies LLP
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/layout_generic.xsd">
+    <update handle="formkey"/>
+    <container name="root" label="Root">
+        <block class="Cinovic\Whatsapp\Block\Adminhtml\Personlist\Grid" name="admin.personlist.personlist.grid"/>
+    </container>
+</layout>

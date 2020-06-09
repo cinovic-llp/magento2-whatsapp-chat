@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic Technologies LLP
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+		<referenceContainer name="content">
+			<block class="Cinovic\Whatsapp\Block\Adminhtml\Personlist\Edit" name="personlist_edit_page"/>
+		</referenceContainer>
+    </body>
+</page>

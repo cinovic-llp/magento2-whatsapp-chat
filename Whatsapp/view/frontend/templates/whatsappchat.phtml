@@ -1,0 +1,116 @@
+<?php
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic Technologies LLP
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+$isenable = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_ENABLED);
+$image = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_LOGO);
+$imageurl = $block->getImageUrl($image);
+if(empty($image)){
+    $imageurl = $block->getViewFileUrl('Cinovic_Whatsapp::images/whatsapp.png');
+}
+$geturl = $block->getWhatsappUrl();
+$isclose = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_CLOSE);
+$button_type = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_BUTTON_TYPE);
+$top = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_TOP);
+$right = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_RIGHT);
+$bottom = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_BOTTOM);
+$left = $block->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_LEFT);
+$mobile = $this->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_NUMBER);
+$custom_message = $this->getConfig(\Cinovic\Whatsapp\Block\Whatsappchat::CONFIG_CUS_MSG);
+if(empty($left)){ $left = 30;}
+if(empty($bottom)){ $bottom = 30;}
+if (preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"])) {
+    $deviceflag = "mobile";
+}else {
+    $deviceflag = "web";
+}
+if($isenable){
+?>
+<div id="whatspaaIconContect" style="position: fixed;bottom:<?php echo $bottom?>;left:<?php echo $left?>;top:<?php if ($top != '') {echo $top;}?>;right:<?php if ($right != '') {echo $right;}?>;">
+<?php if  ($button_type== "icon") : ?>
+<?php if ($isclose) : ?>
+        <span id="iconclose" class="closeButtonImage" title="Close"></span>
+    <?php endif; ?>
+    <?php if ($deviceflag == "mobile") : ?>
+    <?php if(preg_match('/(Chrome|CriOS)\//i',$_SERVER['HTTP_USER_AGENT'])
+    && !preg_match('/(Aviator|ChromePlus|coc_|Dragon|Edge|Flock|Iron|Kinza|Maxthon|MxNitro|Nichrome|OPR|Perk|Rockmelt|Seznam|Sleipnir|Spark|UBrowser|Vivaldi|WebExplorer|YaBrowser)/i',$_SERVER['HTTP_USER_AGENT'])): ?>
+    <a href="https://wa.me/<?php echo str_replace("+","",$mobile); ?>/?text=<?php echo urlencode($custom_message);?>">
+        <?php else: ?>
+        <a href="https://wa.me/<?php echo str_replace("+","",$mobile); ?>">
+        <?php endif; ?>
+    <?php elseif ($deviceflag == "web") : ?>
+    <a href="https://web.whatsapp.com/send?l=en&phone=<?php echo $block->getWhatsappchat(); ?>" target="_blank"
+       data-action="share/whatsapp/share" id="whatspaachat">
+        <?php endif; ?>
+        <img src="<?php echo $imageurl?>" class="imageback" style="max-width:50px;max-height:50px;" >
+    </a>
+<?php endif; ?>
+</div>
+
+<?php if  ($button_type== "box") : ?>
+        <div class="whatsappboxchat" style="left:<?php echo $left?>;bottom:85px;">
+        <div class="listhader"><p>Person List</div>
+        <span class="whatsappcloselist"></span>
+            <?php
+            foreach ($block->getWhatsappUrl() as $url):
+                if ($url['url'] != '' || $url['url'] != null):?>
+                    <?php echo $url['url']; ?>
+                        <?php if ($url['image_url'] != '' && $url['image_url'] != null): ?>
+                            <div class="personImage"
+                                 style="background-image: url('pub/media/<?php echo $url['image_url'] ?>')"></div>
+                        <?php else: ?>
+                            <div class="personImage"></div>
+                        <?php endif; ?>
+                        <?php if ($url['name'] == '' || $url['name'] == null):
+                            $url['name'] = 'Chat with Us';
+                        endif; ?>
+                        <div class="whatinfo">
+                            <span class="personname"><?php echo $url['name']; ?></span>
+                            <span class="default"><?php echo $url['department_name']; ?></span>
+                            <span class="default"><?php echo $url['custom_message']; ?></span>
+                        </div>
+                    </a>
+                <?php endif;
+            endforeach; ?>
+        </div>
+    <?php if ($isclose) : ?>
+        <span id="boxclose" class="closeButtonImage" title="Close WhatsApp Contact" style="bottom:<?php echo $bottom?>;left:<?php echo $left?>;"></span>
+    <?php endif; ?>
+    <div  id="showlist" class="whatsappboxbotton" style="display: flex;background-color: rgb(120, 240, 138);bottom:<?php echo $bottom?>;left:<?php echo $left?>;top:<?php if ($top != '') {echo $top;}?>;right:<?php if ($right != '') {echo $right;}?>;">
+    <img src="<?php echo $imageurl?>" class="showlistimg">
+        <span class="whatsappText">Click And Chat</span>
+    </div>
+<?php endif;} ?>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        "use strict";
+        $(document).ready(function () {
+        $("#close").click(function () {
+            $("#whatspaaIconContect").css("display", "none");
+        });
+        $(".whatsappboxchat").css("display", "none");
+        jQuery(".whatsappcloselist").click(function () {
+            jQuery(".whatsappboxchat").css("display", "none");
+        });
+        jQuery("#boxclose").click(function () {
+            jQuery(".whatsappboxchat").css("display", "none");
+            jQuery("#showlist").css("display", "none");
+            jQuery("#boxclose").css("display", "none");
+        });
+        jQuery("#iconclose").click(function () {
+            jQuery("#whatspaaIconContect").css("display", "none");
+            jQuery("#iconclose").css("display", "none");
+        });
+        jQuery("#showlist").click(function () {
+            jQuery(".whatsappboxchat").css("display", "block");
+        });
+    });
+});
+</script>

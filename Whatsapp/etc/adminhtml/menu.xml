@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Backend/etc/menu.xsd">
+    <menu>
+        <add id="Cinovic_Whatsapp::manager" title="Cinovic" module="Cinovic_Whatsapp" sortOrder="10" resource="Cinovic_Whatsapp::manager" />
+
+        <add id="Cinovic_Whatsapp::personlist"
+            resource="Cinovic_Whatsapp::personlist"
+            module="Cinovic_Whatsapp"
+            parent="Cinovic_Whatsapp::manager"
+            action="whatsapp/personlist"
+            title="Manage Whatsapp Person List"
+            sortOrder="1" />
+
+             <add id="Cinovic_Whatsapp::whatsapp_config"
+             title="Whatsapp Configuration"
+             module="Cinovic_Whatsapp"
+             sortOrder="2"
+             action="adminhtml/system_config/edit/section/whatsapp"
+             resource="Cinovic_Whatsapp::whatsapp_config"
+             parent="Cinovic_Whatsapp::manager"/>
+    </menu>
+</config>

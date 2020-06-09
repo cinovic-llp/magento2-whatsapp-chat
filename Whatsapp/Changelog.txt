@@ -1,0 +1,8 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 1.0.0 --------------------------------------
+
+	+ Whatsapp Integrate with Magento frontend with two Features. (chat & box)

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+         <tab id="cinovic" translate="label"  sortOrder="10">
+            <label>Cinovic</label>
+        </tab>
+        <section id="whatsapp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>WhatsApp Settings</label>
+            <tab>cinovic</tab>
+            <resource>Cinovic_Whatsapp::whatsapp_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Settings</label>
+                <field id="enabled" translate="label,tooltip" sortOrder="10" type="select"
+                        showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                  <field id="button_type" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Type</label>
+                    <source_model>Cinovic\Whatsapp\Model\Source\Button</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="custom_message" translate="label" type="textarea" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Custom Chat Message</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                 <field id="number" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Mobile Number</label>
+                    <validate>required-entry</validate>
+                    <comment>Enter With Your Country Code.</comment>
+                   <depends>
+                        <field id="button_type" separator=",">icon</field>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                  <field id="top" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Margin Top</label>
+                     <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="right" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Margin Right</label>
+                     <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="bottom" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Margin Bottom</label>
+                     <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="left" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Margin Left</label>
+                     <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="logo" translate="label" type="image" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png.</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">whatsapp/logo</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">whatsapp/logo</upload_dir>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                 <field id="closebutton" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Close Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
