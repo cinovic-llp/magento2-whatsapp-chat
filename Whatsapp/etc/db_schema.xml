@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cinovic Technologies LLP.
+ *
+ * @category  Cinovic
+ * @package   Cinovic_Whatsapp
+ * @author    Cinovic
+ * @copyright Copyright (c) Cinovic Technologies LLP (https://cinovic.com)
+ * @license   https://store.cinovic.com/license.html
+ */
+ -->
+ <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cinovic_whatsapptable" resource="default" engine="innodb" comment="Cinovic Whatsapptable Table">
+        <column xsi:type="smallint" name="entity_id" padding="6" unsigned="false" identity="true" nullable="false" comment="Entity Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="department_name" nullable="false" length="255" comment="Department Name"/>
+        <column xsi:type="varchar" name="custom_message" nullable="false" length="255" comment="Custom Message"/>
+        <column xsi:type="varchar" name="number" nullable="false" length="11" comment="Number"/>
+        <column xsi:type="varchar" name="image_url" nullable="false" length="255" comment="Image Url"/>
+        <column xsi:type="float" name="disable_enable" nullable="false" length="6" default="1" comment="Disable Enable"/>
+        <column xsi:type="timestamp" name="created_at" padding="10" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" padding="10" default="CURRENT_TIMESTAMP" nullable="true" comment="Updated At"/>
+            <constraint xsi:type="primary" referenceId="PRIMARY">
+                <column name="entity_id"/>
+            </constraint>
+    </table>
+</schema>
