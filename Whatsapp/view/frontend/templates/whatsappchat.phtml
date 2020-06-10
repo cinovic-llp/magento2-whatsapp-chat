@@ -45,8 +45,7 @@ if($isenable){
         <a href="https://wa.me/<?php echo str_replace("+","",$mobile); ?>">
         <?php endif; ?>
     <?php elseif ($deviceflag == "web") : ?>
-    <a href="https://web.whatsapp.com/send?l=en&phone=<?php echo $block->getWhatsappchat(); ?>" target="_blank"
-       data-action="share/whatsapp/share" id="whatspaachat">
+    <a href="https://web.whatsapp.com/send?l=en&phone=<?php echo $block->getWhatsappchat(); ?>" target="_blank">
         <?php endif; ?>
         <img src="<?php echo $imageurl?>" class="imageback" style="max-width:50px;max-height:50px;" >
     </a>

@@ -17,6 +17,10 @@ installation is very easy, please follow the steps for installation-
 
 Now module is properly installed
 
+## Screenshot
+![ScreenShot](https://github.com/cinovic-llp/magento2-whatsapp-chat/blob/master/Screenshots/backend.png)
+![ScreenShot](https://github.com/cinovic-llp/magento2-whatsapp-chat/blob/master/Screenshots/frontend.png)
+
 # Support
 
 Find us our support policy - https://cinovic.com/contact/
