@@ -20,12 +20,24 @@ class Save  extends \Magento\Backend\App\Action
     /**
      * Save constructor.
      * @param MagentoBackendAppActionContext      $context
+     * @param \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
+     * @param \Magento\Framework\Image\Factory $imageFactory
+     * @param \Magento\Framework\Filesystem $filesystem
+     * @param \Magento\Framework\Filesystem\Driver\File $file,
      * @param CinovicWhatsappModelWhatsappmessage $whatsappmessageCollection
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
+        \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
+        \Magento\Framework\Image\AdapterFactory $imageFactory,
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Filesystem\Driver\File $file,
         \Cinovic\Whatsapp\Model\Whatsappmessage $whatsappmessageCollection
     ) {
+        $this->_file = $file;
+        $this->_fileUploaderFactory = $fileUploaderFactory;
+        $this->_filesystem = $filesystem;               
+        $this->_imageFactory = $imageFactory; 
         $this->whatsappmessageCollection = $whatsappmessageCollection;
         parent::__construct($context);
     }
@@ -48,9 +60,9 @@ class Save  extends \Magento\Backend\App\Action
 
             if (isset($image) && isset($image['name']) && $image['name'] != null) {
 
-                $mediaDirectory = $this->_objectManager->get('Magento\Framework\Filesystem')->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+                $mediaDirectory = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
 
-                $file = $this->_objectManager->create('\Magento\Framework\Filesystem\Driver\File');
+                $file = $this->_file;
 
                 if (isset($imageData['image_url']['delete']) && $imageData['image_url']['delete'] == 1) {
                     $deleteurl = $mediaDirectory->getAbsolutePath() . $imageData['image_url']['value'];
@@ -63,10 +75,10 @@ class Save  extends \Magento\Backend\App\Action
 
                 try {
 
-                    $uploader = $this->_objectManager->create('\Magento\MediaStorage\Model\File\Uploader', ['fileId' => 'image_url']);
+                    $uploader = $this->_fileUploaderFactory->create(['fileId' => 'image_url']);
 
                     $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
-                    $imageAdapter = $this->_objectManager->get('Magento\Framework\Image\AdapterFactory')->create();
+                    $imageAdapter = $this->_imageFactory->create();
                     $uploader->addValidateCallback('image_url', $imageAdapter, 'validateUploadFile');
                     $uploader->setAllowRenameFiles(true);
                     $uploader->setFilesDispersion(true);
@@ -100,21 +112,15 @@ class Save  extends \Magento\Backend\App\Action
         try {
             $model = $this->whatsappmessageCollection;
             if (isset($data['entity_id'])) {
-                $model->load($data['entity_id'], 'entity_id');
+                $model->load($data['entity_id'], 'entity_id');               
+            } 
                 $model->setName($data['name']);
                 $model->setDepartmentName($data['department_name']);
                 $model->setCustomMessage($data['custom_message']);
                 $model->setNumber($data['number']);
                 $model->setImageUrl($imageData['image_url']);
                 $model->setDisableEnable($data['disable_enable']);
-            } else {
-                $model->setName($data['name']);
-                $model->setDepartmentName($data['department_name']);
-                $model->setCustomMessage($data['custom_message']);
-                $model->setNumber($data['number']);
-                $model->setImageUrl($imageData['image_url']);
-                $model->setDisableEnable($data['disable_enable']);
-            }
+            
             $model->save();
             $this->messageManager->addSuccess(__('Row data has been successfully saved.'));
             return $resultRedirect->setPath('*/*/index');
