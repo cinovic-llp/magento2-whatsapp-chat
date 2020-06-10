@@ -10,8 +10,17 @@
  */
 namespace Cinovic\Whatsapp\Controller\Adminhtml\personlist;
 
+/**
+ * Class MassDelete
+ * @package Cinovic\Whatsapp\Controller\Adminhtml\personlist
+ */
 class MassDelete extends \Magento\Backend\App\Action
 {
+    /**
+     * MassDelete constructor.
+     * @param MagentoBackendAppActionContext             $context
+     * @param CinovicWhatsappModelWhatsappmessageFactory $whatsappmessageCollection
+     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Cinovic\Whatsapp\Model\WhatsappmessageFactory $whatsappmessageCollection
@@ -19,6 +28,10 @@ class MassDelete extends \Magento\Backend\App\Action
         $this->_whatsappmessageCollection = $whatsappmessageCollection;
         parent::__construct($context);
     }
+
+    /**
+     * @return void
+     */
     public function execute()
     {
 

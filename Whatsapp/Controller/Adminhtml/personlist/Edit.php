@@ -10,8 +10,19 @@
  */
 namespace Cinovic\Whatsapp\Controller\Adminhtml\personlist;
 
+/**
+ * Class Edit
+ * @package Cinovic\Whatsapp\Controller\Adminhtml\personlist
+ */
 class Edit extends \Magento\Backend\App\Action
 {
+    /**
+     * Edit constructor
+     * @param MagentoBackendAppActionContext        $context                   [description]
+     * @param CinovicWhatsappModelWhatsappmessage   $whatsappmessageCollection [description]
+     * @param MagentoFrameworkRegistry              $registry                  [description]
+     * @param MagentoFrameworkViewResultPageFactory $resultPageFactory         [description]
+     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Cinovic\Whatsapp\Model\Whatsappmessage $whatsappmessageCollection,
@@ -24,6 +35,9 @@ class Edit extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
+    /**
+     * @return PageFactory
+     */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();

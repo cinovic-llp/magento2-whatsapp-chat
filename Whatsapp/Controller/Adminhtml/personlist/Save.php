@@ -10,8 +10,18 @@
  */
 namespace Cinovic\Whatsapp\Controller\Adminhtml\personlist;
 
+/**
+ * Class Save
+ * @package Cinovic\Whatsapp\Controller\Adminhtml\personlist
+ */
 class Save  extends \Magento\Backend\App\Action
 {
+
+    /**
+     * Save constructor.
+     * @param MagentoBackendAppActionContext      $context
+     * @param CinovicWhatsappModelWhatsappmessage $whatsappmessageCollection
+     */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Cinovic\Whatsapp\Model\Whatsappmessage $whatsappmessageCollection
@@ -20,6 +30,9 @@ class Save  extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
+    /**
+     * @return void
+     */
     public function execute()
     {
         $image = null;

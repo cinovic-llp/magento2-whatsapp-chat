@@ -10,10 +10,22 @@
  */
 namespace Cinovic\Whatsapp\Controller\Adminhtml\personlist;
 
+/**
+ * Class Index
+ * @package Cinovic\Whatsapp\Controller\Adminhtml\personlist
+ */
 class Index extends \Magento\Backend\App\Action
 {
+	/**
+	 * @var PageFactory
+	 */
 	protected $resultPageFactory = false;
 
+	/**
+	 * Index constructor
+	 * @param MagentoBackendAppActionContext        $context           [description]
+	 * @param MagentoFrameworkViewResultPageFactory $resultPageFactory [description]
+	 */
 	public function __construct(
 		\Magento\Backend\App\Action\Context $context,
 		\Magento\Framework\View\Result\PageFactory $resultPageFactory
@@ -23,6 +35,9 @@ class Index extends \Magento\Backend\App\Action
 		$this->resultPageFactory = $resultPageFactory;
 	}
 
+	/**
+	 * @return PageFactory
+	 */
 	public function execute()
 	{
 		$resultPage = $this->resultPageFactory->create();
@@ -32,6 +47,4 @@ class Index extends \Magento\Backend\App\Action
            );
 		return $resultPage;
 	}
-
-
 }

@@ -10,6 +10,10 @@
  */
 namespace Cinovic\Whatsapp\Block\Adminhtml;
 
+/**
+ * Class Whatsapp
+ * @package Cinovic\Whatsapp\Block\Adminhtml
+ */
 class Whatsapp extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**
@@ -22,8 +26,7 @@ class Whatsapp extends \Magento\Backend\Block\Widget\Grid\Container
     }
 
     /**
-     * Prepare button and grid
-     *
+     * @return mixed
      */
     protected function _prepareLayout()
     {
@@ -33,9 +36,9 @@ class Whatsapp extends \Magento\Backend\Block\Widget\Grid\Container
         );
         return parent::_prepareLayout();
     }
+
     /**
      * Render grid
-     *
      * @return string
      */
     public function getGridHtml()

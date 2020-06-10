@@ -10,8 +10,19 @@
  */
 namespace Cinovic\Whatsapp\Block\Adminhtml\Personlist;
 
+/**
+ * Class Grid
+ * @package Cinovic\Whatsapp\Block\Adminhtml\Personlist
+ */
 class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
+    /**
+     * Grid constructor.
+     * @param MagentoBackendBlockTemplateContext         $context
+     * @param MagentoBackendHelperData                   $backendHelper
+     * @param CinovicWhatsappModelWhatsappmessageFactory $whatsappmessageCollection
+     * @param array                                      $data
+     */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
@@ -30,6 +41,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         parent::_construct();
     }
 
+    /**
+     * @return mixed
+     */
     protected function _prepareCollection()
     {
         $collection = $this->_whatsappmessageCollection->create()->getCollection();
@@ -37,6 +51,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return mixed
+     */
     protected function _prepareColumns()
     {
         $this->addColumn(
@@ -141,6 +158,9 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         return parent::_prepareColumns();
     }
 
+    /**
+     * @return object
+     */
     protected function _prepareMassaction()
     {
         $this->setMassactionIdField('entity_id');
@@ -157,11 +177,18 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         return $this;
     }
 
+    /**
+     * @return String
+     */
     public function getGridUrl()
     {
         return $this->getUrl('whatsapp/*/grid', array('_current' => true));
     }
 
+    /**
+     * @param  Object $row
+     * @return String
+     */
     public function getRowUrl($row)
     {
         return $this->getUrl(

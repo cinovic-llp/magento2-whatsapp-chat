@@ -12,8 +12,15 @@ namespace Cinovic\Whatsapp\Model;
 
 use Magento\Framework\Model\AbstractModel;
 
+/**
+ * Class Whatsappmessage
+ * @package Cinovic\Whatsapp\Model
+ */
 class Whatsappmessage extends AbstractModel
 {
+    /**
+     * @return void
+     */
     public function _construct()
     {
         $this->_init('Cinovic\Whatsapp\Model\ResourceModel\Whatsappmessage');

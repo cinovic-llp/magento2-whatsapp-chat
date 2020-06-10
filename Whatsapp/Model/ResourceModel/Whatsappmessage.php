@@ -10,8 +10,15 @@
  */
 namespace Cinovic\Whatsapp\Model\ResourceModel;
 
+/**
+ * Class Whatsappmessage
+ * @package Cinovic\Whatsapp\Model\ResourceModel
+ */
 class Whatsappmessage extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('cinovic_whatsapptable', 'entity_id');

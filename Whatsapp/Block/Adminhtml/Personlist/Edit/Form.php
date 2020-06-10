@@ -10,9 +10,12 @@
  */
 namespace Cinovic\Whatsapp\Block\Adminhtml\Personlist\Edit;
 
+/**
+ * Class Image
+ * @package Cinovic\Whatsapp\Block\Adminhtml\Personlist\Edit
+ */
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
-    protected $_systemStore;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context,
@@ -32,8 +35,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
     }
 
     /**
-     * Prepare form.
-     *
      * @return $this
      */
     protected function _prepareForm()

@@ -10,11 +10,29 @@
  */
 namespace Cinovic\Whatsapp\Block\Adminhtml\Personlist\Helper\Renderer;
 
+/**
+ * Class Image
+ * @package Cinovic\Whatsapp\Block\Adminhtml\Personlist\Helper\Renderer
+ */
 class Image extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractRenderer
 {
+		/**
+		 * @var StoreManagerInterface
+		 */
 		protected $_storeManager;
+
+		/**
+		 * @var WhatsappmessageFactory
+		 */
     protected $_whatsappmessageCollection;
 
+		/**
+		 * Image constructor.
+		 * @param MagentoBackendBlockContext                 $context
+		 * @param MagentoStoreModelStoreManagerInterface     $storeManager
+		 * @param CinovicWhatsappModelWhatsappmessageFactory $whatsappmessageCollection
+		 * @param array                                      $data
+		 */
     public function __construct(
         \Magento\Backend\Block\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -26,6 +44,10 @@ class Image extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractR
         $this->_whatsappmessageCollection = $whatsappmessageCollection;
     }
 
+		/**
+		 * @param  DataObject $row
+		 * @return String
+		 */
     public function render(\Magento\Framework\DataObject $row)
     {
         $image = $this->_whatsappmessageCollection->create()->load($row->getId());

@@ -10,8 +10,15 @@
  */
 namespace Cinovic\Whatsapp\Model\ResourceModel\Whatsappmessage;
 
+/**
+ * Class Collection
+ * @package Cinovic\Whatsapp\Model\ResourceModel\Whatsappmessage
+ */
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_init('Cinovic\Whatsapp\Model\Whatsappmessage', 'Cinovic\Whatsapp\Model\ResourceModel\Whatsappmessage');

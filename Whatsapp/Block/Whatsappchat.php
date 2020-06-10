@@ -10,6 +10,10 @@
  */
 namespace  Cinovic\Whatsapp\Block;
 
+/**
+ * Class Whatsappchat
+ * @package Cinovic\Whatsapp\Block\Adminhtml
+ */
 class Whatsappchat extends \Magento\Framework\View\Element\Template
 {
     const CONFIG_ENABLED = 'whatsapp/general/enabled';
@@ -23,6 +27,14 @@ class Whatsappchat extends \Magento\Framework\View\Element\Template
     const CONFIG_NUMBER = 'whatsapp/general/number';
     const CONFIG_CUS_MSG = 'whatsapp/general/custom_message';
 
+    /**
+     * Whatsappchat constructor.
+     * @param MagentoBackendBlockWidgetContext           $context
+     * @param MagentoStoreModelStoreManagerInterface     $storeManager
+     * @param CinovicWhatsappModelWhatsappmessageFactory $whatsappmessageCollection
+     * @param MagentoFrameworkRegistry                   $registry
+     * @param array                                      $data
+     */
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -35,23 +47,40 @@ class Whatsappchat extends \Magento\Framework\View\Element\Template
         $this->_whatsappmessageCollection = $whatsappmessageCollection;
         parent::__construct($context, $data);
     }
+
+    /**
+     * @param  String $config_path
+     * @return string
+     */
     public function getConfig($config_path)
     {
-        return   $this->_scopeConfig->getValue(
+        return $this->_scopeConfig->getValue(
             $config_path,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
+
+    /**
+     * @return string
+     */
     public function getWhatsappchat(){
         $mobile = $this->getConfig(self::CONFIG_NUMBER);
         $custom_message = $this->getConfig(self::CONFIG_CUS_MSG);
         $chatdata = $mobile."&text=" .$custom_message;
         return $chatdata;
     }
+
+    /**
+     * @param  String $image
+     * @return string
+     */
     public function getImageUrl($image){
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . "whatsapp/logo/".$image;
     }
 
+    /**
+     * @return array
+     */
     public function getWhatsappUrl()
     {
         $custom_message = $this->getConfig(self::CONFIG_CUS_MSG);
@@ -77,7 +106,7 @@ class Whatsappchat extends \Magento\Framework\View\Element\Template
                         }
                     } else {
                         $weburl = "https://web.whatsapp.com/send?l=en&phone=" . $number . "&text=" . $custom_message;
-                        $whatsappurl['url'] = "<a href='" . $weburl . "' target='_blank' data-action='share/whatsapp/share' class='whatsappPersonAccount'>";
+                        $whatsappurl['url'] = "<a href='" . $weburl . "' target='_blank' class='whatsappPersonAccount'>";
                     }
                     $whatsappurl['name'] = $value['name'];
                     $whatsappurl['image_url'] = $value['image_url'];
@@ -94,7 +123,7 @@ class Whatsappchat extends \Magento\Framework\View\Element\Template
                 array_push($data, $whatsappurl);
             }
         } catch (\Exception $e) {
-            echo $e->getMessage();
+
         }
         return $data;
     }

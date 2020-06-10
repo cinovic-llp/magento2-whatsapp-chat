@@ -10,10 +10,23 @@
  */
 namespace Cinovic\Whatsapp\Block\Adminhtml\Personlist;
 
+/**
+ * Class Edit
+ * @package Cinovic\Whatsapp\Block\Adminhtml\Personlist
+ */
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
+    /**
+     * @var Registry
+     */
     protected $_coreRegistry = null;
 
+    /**
+     * Edit constructor.
+     * @param MagentoBackendBlockWidgetContext $context
+     * @param MagentoFrameworkRegistry         $registry
+     * @param array                            $data
+     */
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry,
@@ -22,6 +35,10 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
+
+    /**
+     * @return void
+     */
     protected function _construct()
     {
         $this->_objectId = 'entity_id';
